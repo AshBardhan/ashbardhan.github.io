@@ -1,7 +1,10 @@
 {
 	"name": "ashbardhan.github.io",
 	"version": "1.0.0",
-	"description": "Simple github IO page",
+	"description": "Personal portfolio website showcasing frontend engineering and UI/UX work",
+	"scripts": {
+		"start": "npx serve"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/AshBardhan/ashbardhan.github.io.git"
