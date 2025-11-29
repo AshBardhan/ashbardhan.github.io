@@ -1,0 +1,53 @@
+---
+import { personalInfo } from '@/data/portfolio';
+---
+
+<section id="about" class="about-section">
+  <div class="container">
+    <h2 class="section-title reveal">About Me</h2>
+
+    <div class="about-content reveal">
+      {personalInfo.bio.map((paragraph) => <p set:html={paragraph} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: var(--space-12) 0;
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--space-10);
+    color: var(--color-text-light);
+    font-size: var(--font-size-4xl);
+  }
+
+  .about-content {
+    max-width: 960px;
+    margin: 0 auto;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .about-content :global(a) {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .about-content :global(a:hover) {
+    color: var(--color-accent-hover);
+  }
+
+  .about-content :global(strong) {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-accent);
+  }
+</style>

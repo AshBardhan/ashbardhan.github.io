@@ -24,3 +24,11 @@ Icon
 ## File dependencies
 node_modules
 *.log
+
+# Build output
+dist
+build
+
+# Temp files
+tmp
+docs
