@@ -43,8 +43,8 @@ export const personalInfo = {
     `Outside of work, I explore <a href="https://www.instagram.com/ashbee.arts/" target="_blank" rel="noopener noreferrer">sketching and illustration</a> and experiment with <a href="https://codepen.io/AshBardhan" target="_blank" rel="noopener noreferrer">creative CSS animations</a>. These explorations influence how I think with clarity in building digital interfaces.`,
     `In a nutshell, my work lives somewhere between art and programming for building thoughtful user experiences.`,
   ],
-  profileImage: '/assets/images/ashish.jpg',
-  headerImage: '/assets/images/ashish-header.jpg',
+  profileImage: '/images/ashish.jpg',
+  headerImage: '/images/ashish-header.jpg',
 };
 
 export const socialLinks: SocialLink[] = [
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     id: 'memefy-this',
     title: 'Memefy This',
     description: 'A Chrome extension developed in Vanilla JS for making instant memes from images online, with over 60,000 downloads and 15,000 active users.',
-    image: '/assets/images/memefy-this.jpg',
+    image: '/images/memefy-this.jpg',
     role: 'Application Developer',
     techStack: ['JavaScript', 'HTML5', 'CSS3', 'Chrome Extension API'],
     achievements: ['60,000+ total downloads', '15,000+ active users', '4.5★ average rating on Chrome Web Store', 'Featured in multiple tech blogs'],
@@ -91,7 +91,7 @@ export const projects: Project[] = [
     id: 'robo-galactic-shooter',
     title: 'Robo Galactic Shooter',
     description: 'Retro Video Game developed in TypeScript, HTML5 Canvas, Kontra.js and sfxr.js game libraries.',
-    image: '/assets/images/robo-galactic-shooter.jpg',
+    image: '/images/robo-galactic-shooter.jpg',
     role: 'Game Developer',
     techStack: ['TypeScript', 'HTML5 Canvas', 'SVG', 'Kontra.js', 'sfxr.js'],
     achievements: ['Built under 13KB file size constraint', 'Custom sprite animations', 'Dynamic sound effects generation', 'Retro arcade-style gameplay'],
