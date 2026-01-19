@@ -4,20 +4,20 @@
    ========================================== */
 
 :root {
-  --color-primary: #a5abdf;
-  --color-primary-dark: #8590d5;
+  --color-primary: #815cbd;
+  --color-primary-dark: #ae85d5;
   --color-accent: #e6e663;
   --color-accent-hover: #fff;
 
   --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f5f5f5;
-  --color-bg-tertiary: #e0ffff;
-  --color-bg-dark: #181616;
-  --color-bg-header: #282d36;
+  --color-bg-secondary: #efefef;
+  --color-bg-tertiary: #a7c7e7;
+  --color-bg-dark: #151515;
+  --color-bg-header: #242424;
 
-  --color-text-primary: #3d3e44;
-  --color-text-secondary: #4a4a4a;
-  --color-text-light: #e0ffff;
+  --color-text-primary: #2d2d2d;
+  --color-text-secondary: #545454;
+  --color-text-light: #9ff3f3;
   --color-text-white: #ffffff;
 
   --color-border: #d1d1d1;
@@ -30,9 +30,8 @@
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
   /* Typography Scale */
-  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-family-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
   --font-size-xs: 0.75rem; /* 12px */
   --font-size-sm: 0.875rem; /* 14px */
@@ -52,7 +51,6 @@
 
   --line-height-tight: 1.25;
   --line-height-normal: 1.5;
-  --line-height-relaxed: 1.75;
 
   /* Spacing Scale (based on 8px grid) */
   --space-1: 0.25rem; /* 4px */
@@ -169,7 +167,6 @@ h6 {
 
 p {
   margin-bottom: var(--space-4);
-  line-height: var(--line-height-relaxed);
 }
 
 p:last-child {
@@ -194,6 +191,10 @@ img {
   display: block;
 }
 
+label {
+  cursor: pointer;
+}
+
 /* ==========================================
    UTILITY CLASSES
    ========================================== */
@@ -202,12 +203,12 @@ img {
   width: 100%;
   max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: 0 var(--space-6);
+  padding: 0 var(--space-8);
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 var(--space-4);
+    padding: 0 var(--space-6);
   }
 }
 

@@ -5,7 +5,6 @@ import { personalInfo } from '@/data/portfolio';
 <section id="about" class="about-section">
   <div class="container">
     <h2 class="section-title reveal">About Me</h2>
-
     <div class="about-content reveal">
       {personalInfo.bio.map((paragraph) => <p set:html={paragraph} />)}
     </div>
@@ -25,7 +24,7 @@ import { personalInfo } from '@/data/portfolio';
   .section-title {
     text-align: center;
     margin-bottom: var(--space-10);
-    color: var(--color-text-light);
+    color: var(--color-text-white);
     font-size: var(--font-size-4xl);
   }
 
@@ -33,7 +32,6 @@ import { personalInfo } from '@/data/portfolio';
     max-width: 960px;
     margin: 0 auto;
     font-size: var(--font-size-lg);
-    line-height: var(--line-height-relaxed);
   }
 
   .about-content :global(a) {

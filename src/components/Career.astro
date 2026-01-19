@@ -5,8 +5,7 @@ import Modal from './Modal.astro';
 
 <section id="career" class="career-section">
   <div class="container">
-    <h2 class="section-title reveal">Career Journey</h2>
-
+    <h2 class="section-title reveal">Experiences</h2>
     <div class="timeline">
       {
         employment.map((job, index) => (
@@ -17,15 +16,11 @@ import Modal from './Modal.astro';
                 <h3 class="job-title">{job.position}</h3>
                 <span class="job-duration">{job.duration}</span>
               </div>
-              <div class="job-company">
-                {job.company} • {job.location}
-              </div>
+              <div class="job-company">{job.company}</div>
               <p class="job-description">{job.description}</p>
-
               <button class="view-details-btn" data-job-id={job.id} aria-label={`View details for ${job.position} at ${job.company}`}>
                 View Contributions
               </button>
-
               <div class="job-tech-stack">
                 {job.techStack.map((tech) => (
                   <span class="tech-tag">{tech}</span>
@@ -38,8 +33,7 @@ import Modal from './Modal.astro';
     </div>
   </div>
 </section>
-
-<Modal id="career-modal" size="medium" ariaLabelledBy="modal-title" />
+<Modal id="career-modal" size="large" ariaLabelledBy="modal-title" />
 
 <style>
   .career-section {
@@ -132,21 +126,19 @@ import Modal from './Modal.astro';
     font-size: var(--font-size-sm);
     color: var(--color-text-secondary);
     font-weight: var(--font-weight-semibold);
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-dark);
     color: white;
     padding: var(--space-1) var(--space-3);
     border-radius: var(--border-radius-full);
   }
 
   .job-company {
-    font-size: var(--font-size-lg);
     color: var(--color-text-secondary);
     margin-bottom: var(--space-3);
   }
 
   .job-description {
     margin-bottom: var(--space-4);
-    line-height: var(--line-height-relaxed);
   }
 
   .view-details-btn {
@@ -225,10 +217,10 @@ import Modal from './Modal.astro';
               ${job.position} at ${job.company}
             </h2>
             <p style="color: var(--color-text-secondary); margin-bottom: var(--space-6);">
-              ${job.duration} • ${job.location}
+              ${job.duration}
             </p>
             <h3 style="margin-bottom: var(--space-3); color: var(--color-text-primary);">Key Contributions:</h3>
-            <ul style="list-style: disc; padding-left: var(--space-6); margin-bottom: var(--space-6); line-height: var(--line-height-relaxed);">
+            <ul style="list-style: disc; padding-left: var(--space-6); margin-bottom: var(--space-6);">
               ${job.contributions.map((c) => `<li style="margin-bottom: var(--space-2);">${c}</li>`).join('')}
             </ul>
             <h3 style="margin-bottom: var(--space-3); color: var(--color-text-primary);">Technologies Used:</h3>

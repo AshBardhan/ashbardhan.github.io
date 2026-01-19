@@ -10,7 +10,6 @@ import Contact from '@/components/Contact.astro';
 
 <BaseLayout>
   <Header />
-
   <main id="main-content">
     <Hero />
     <About />
@@ -18,14 +17,9 @@ import Contact from '@/components/Contact.astro';
     <Projects />
     <Contact />
   </main>
-
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; {new Date().getFullYear()} Ashish Bardhan. All rights reserved.</p>
-      <p class="footer-note">
-        Built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>
-        & GSAP
-      </p>
+      &copy; {new Date().getFullYear()} Ashish Bardhan. All rights reserved.
     </div>
   </footer>
 </BaseLayout>
@@ -33,28 +27,10 @@ import Contact from '@/components/Contact.astro';
 <style>
   .site-footer {
     background-color: var(--color-bg-header);
-    color: var(--color-text-light);
+    color: var(--color-text-white);
     padding: var(--space-6) 0;
     text-align: center;
-  }
-
-  .site-footer p {
-    margin-bottom: var(--space-2);
     font-size: var(--font-size-sm);
-  }
-
-  .site-footer p:last-child {
-    margin-bottom: 0;
-  }
-
-  .footer-note a {
-    color: var(--color-accent);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-
-  .footer-note a:hover {
-    color: var(--color-accent-hover);
   }
 </style>
 

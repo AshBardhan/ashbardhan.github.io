@@ -20,6 +20,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
+    Google Fonts - Inter
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
@@ -53,17 +58,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         image: new URL('/assets/images/ashish.jpg', Astro.site),
         sameAs: ['https://www.linkedin.com/in/ashbardhan/', 'https://github.com/AshBardhan', 'https://x.com/CreativeBakchod', 'https://codepen.io/AshBardhan'],
         jobTitle: 'Frontend Engineer',
-        worksFor: {
-          '@type': 'Organization',
-          name: 'Freelance',
-        },
       })}
     />
   </head>
 
   <body>
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
-
     <slot />
   </body>
 </html>

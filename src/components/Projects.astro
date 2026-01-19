@@ -5,8 +5,7 @@ import Modal from './Modal.astro';
 
 <section id="projects" class="projects-section">
   <div class="container">
-    <h2 class="section-title reveal">My Projects</h2>
-
+    <h2 class="section-title reveal">Projects</h2>
     <div class="projects-grid">
       {
         projects.map((project) => (
@@ -57,7 +56,7 @@ import Modal from './Modal.astro';
   </div>
 </section>
 
-<Modal id="project-modal" size="large" ariaLabelledBy="project-modal-title" />
+<Modal id="project-modal" ariaLabelledBy="project-modal-title" />
 
 <style>
   .projects-section {
@@ -162,7 +161,6 @@ import Modal from './Modal.astro';
 
   .project-description {
     color: var(--color-text-secondary);
-    line-height: var(--line-height-relaxed);
     margin-bottom: var(--space-4);
   }
 
@@ -205,7 +203,6 @@ import Modal from './Modal.astro';
   document.addEventListener('DOMContentLoaded', () => {
     // Initialize modal instance
     const projectModal = new (window as any).Modal('project-modal', {
-      size: 'large',
       ariaLabelledBy: 'project-modal-title',
     });
 
@@ -226,7 +223,7 @@ import Modal from './Modal.astro';
           <h2 id="project-modal-title" style="margin-bottom: var(--space-3); color: var(--color-text-primary);">
             ${project.title}
           </h2>
-          <p style="color: var(--color-text-secondary); margin-bottom: var(--space-6); line-height: var(--line-height-relaxed);">
+          <p style="color: var(--color-text-secondary); margin-bottom: var(--space-6);">
             ${project.description}
           </p>
           
@@ -247,7 +244,7 @@ import Modal from './Modal.astro';
           </div>
           
           <h3 style="margin-bottom: var(--space-3); color: var(--color-text-primary);">Key Achievements:</h3>
-          <ul style="list-style: disc; padding-left: var(--space-6); margin-bottom: var(--space-6); line-height: var(--line-height-relaxed);">
+          <ul style="list-style: disc; padding-left: var(--space-6); margin-bottom: var(--space-6);">
             ${project.achievements.map((achievement) => `<li style="margin-bottom: var(--space-2);">${achievement}</li>`).join('')}
           </ul>
           
@@ -257,7 +254,7 @@ import Modal from './Modal.astro';
                 ? `
               <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" 
                  style="display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-3) var(--space-5); background-color: var(--color-accent); color: var(--color-bg-dark); border-radius: var(--border-radius-md); font-weight: var(--font-weight-semibold); text-decoration: none;">
-                View on GitHub
+                GitHub Repo
               </a>
             `
                 : ''
@@ -267,7 +264,7 @@ import Modal from './Modal.astro';
                 ? `
               <a href="${project.demoUrl}" target="_blank" rel="noopener noreferrer"
                  style="display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-3) var(--space-5); background-color: var(--color-primary); color: white; border-radius: var(--border-radius-md); font-weight: var(--font-weight-semibold); text-decoration: none;">
-                View Live Demo
+                Live Demo
               </a>
             `
                 : ''

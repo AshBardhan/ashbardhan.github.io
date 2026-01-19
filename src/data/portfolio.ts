@@ -17,7 +17,7 @@ export interface Project {
   achievements: string[];
   demoUrl?: string;
   githubUrl?: string;
-  featured: boolean;
+  featured?: boolean;
 }
 
 export interface Employment {
@@ -37,8 +37,11 @@ export const personalInfo = {
   email: 'ashbardhan@gmail.com',
   location: 'New Delhi, India',
   bio: [
-    `I am <strong>Ashish Bardhan</strong> from New Delhi, India. I'm a passionate frontend/UI engineer with 10+ years of experience in building scalable web applications. Proficient with multiple CSS and JS Frameworks, with extensive knowledge of UX and agile project management. I love to <a href="https://www.instagram.com/ashbee.arts/" target="_blank" rel="noopener noreferrer">sketch doodles</a> and <a href="https://codepen.io/AshBardhan" target="_blank" rel="noopener noreferrer">program CSS artworks</a>, as a way to express my creativity.`,
-    `In a nutshell... Art, Programming and somewhere in between I'll describe my line of work.`,
+    `I'm a passionate frontend engineer with over 12 years of experience building scalable, accessible, and performance-driven web applications. My work sits at the intersection of design and engineering, meeting product decisions, technical constraints and user needs.`,
+    `Over the years, I've led and contributed to products used globally focusing not just on how interfaces are built, but how they interact with users. I care deeply about scalability, usability and accessibility across multiple teams and evolving requirements.`,
+    `My approach to work is rooted in ownership and collaboration. I enjoy working closely with designers, product managers, and engineers to translate abstract ideas into well-crafted and concrete experiences.`,
+    `Outside of work, I explore <a href="https://www.instagram.com/ashbee.arts/" target="_blank" rel="noopener noreferrer">sketching and illustration</a> and experiment with <a href="https://codepen.io/AshBardhan" target="_blank" rel="noopener noreferrer">creative CSS animations</a>. These explorations influence how I think with clarity in building digital interfaces.`,
+    `In a nutshell, my work lives somewhere between art and programming for building thoughtful user experiences.`,
   ],
   profileImage: '/assets/images/ashish.jpg',
   headerImage: '/assets/images/ashish-header.jpg',
@@ -75,11 +78,11 @@ export const projects: Project[] = [
   {
     id: 'memefy-this',
     title: 'Memefy This',
-    description: 'A Chrome extension developed in Vanilla JS for making instant memes from images online, with over 8,000 downloads and 2,000 active users.',
+    description: 'A Chrome extension developed in Vanilla JS for making instant memes from images online, with over 60,000 downloads and 15,000 active users.',
     image: '/assets/images/memefy-this.jpg',
-    role: 'Solo Developer',
-    techStack: ['Vanilla JavaScript', 'Chrome Extension API', 'HTML5 Canvas', 'CSS3'],
-    achievements: ['8,000+ total downloads', '2,000+ active users', '4.5★ average rating on Chrome Web Store', 'Featured in multiple tech blogs'],
+    role: 'Application Developer',
+    techStack: ['JavaScript', 'HTML5', 'CSS3', 'Chrome Extension API'],
+    achievements: ['60,000+ total downloads', '15,000+ active users', '4.5★ average rating on Chrome Web Store', 'Featured in multiple tech blogs'],
     demoUrl: 'https://chromewebstore.google.com/detail/memefy-this/iohemjpgjkgkfgfpiglpfpcclogkelcf',
     githubUrl: 'https://github.com/AshBardhan/memefy-this',
     featured: true,
@@ -87,16 +90,15 @@ export const projects: Project[] = [
   {
     id: 'robo-galactic-shooter',
     title: 'Robo Galactic Shooter',
-    description: 'A Retro single-player shooting video game developed in HTML Canvas and SVG sprites with Kontra and sfxr JS libraries under 13 KB.',
+    description: 'Retro Video Game developed in TypeScript, HTML5 Canvas, Kontra.js and sfxr.js game libraries.',
     image: '/assets/images/robo-galactic-shooter.jpg',
     role: 'Game Developer',
-    techStack: ['HTML5 Canvas', 'Kontra.js', 'sfxr.js', 'SVG'],
+    techStack: ['TypeScript', 'HTML5 Canvas', 'SVG', 'Kontra.js', 'sfxr.js'],
     achievements: ['Built under 13KB file size constraint', 'Custom sprite animations', 'Dynamic sound effects generation', 'Retro arcade-style gameplay'],
     demoUrl: 'https://robo-galactic-shooter.netlify.app/',
     githubUrl: 'https://github.com/AshBardhan/robo-galactic-shooter',
     featured: true,
   },
-  // Add more projects here as needed
 ];
 
 export const employment: Employment[] = [
@@ -114,15 +116,15 @@ export const employment: Employment[] = [
       'Implemented an automated unit and E2E testing using Vitest and Playwright, achieving 80% code coverage',
       'Established version-controlled deployments with tagged releases for seamless rollbacks',
     ],
-    techStack: ['Next.js', 'Redux', 'Material UI', 'Styled Components', 'Vitest', 'Playwright', 'TypeScript'],
+    techStack: ['Next.js', 'React', 'Redux', 'Material UI', 'Tailwind', 'Styled Components', 'Vitest', 'Playwright', 'TypeScript', 'GitHub Actions'],
   },
   {
     id: 'wingify-vwo-2015',
-    company: 'Wingify/VWO',
+    company: 'VWO',
     position: 'Lead Software Engineer',
     duration: 'Feb 2015 - Nov 2023',
     location: 'New Delhi, India',
-    description: 'Led a team of 4 engineers to develop a B2B SaaS platform used by businesses in 90+ countries.',
+    description: 'Led the UX development team building a B2B SaaS platform used by businesses in 90+ countries.',
     contributions: [
       'Developed scalable web applications with React, Angular, Vue, and integrated RESTful APIs to fulfill business requirements',
       'Built a WCAG 2.0-compliant marketing website using WordPress, Bootstrap, and jQuery',
@@ -134,7 +136,7 @@ export const employment: Employment[] = [
       'Designed and implemented email templates using Stripo and Tabular tools',
       'Mentored junior developers through pair programming and code reviews',
     ],
-    techStack: ['React', 'Angular', 'Vue', 'D3.js', 'WordPress', 'Bootstrap', 'jQuery', 'Percy', 'Jasmine', 'Jest', 'Cypress', 'Selenium'],
+    techStack: ['React', 'Angular', 'Vue', 'TypeScript', 'D3.js', 'Bootstrap', 'Sass', 'jQuery', 'Percy', 'Jasmine', 'Jest', 'Cypress', 'Selenium', 'Jenkins', 'Figma', 'Node.js', 'WordPress'],
   },
   {
     id: 'healthkart-2013',
@@ -149,7 +151,7 @@ export const employment: Employment[] = [
       'Designed and implemented email templates using Mailchimp tool',
       'Conducted cross-browser and cross-device testing with BrowserStack, ensuring seamless compatibility across multiple versions of different browsers and devices',
     ],
-    techStack: ['Spring', 'Stripes', 'Grails', 'Node.js', 'Mailchimp', 'BrowserStack'],
+    techStack: ['Spring', 'Stripes', 'Grails', 'Java', 'Node.js', 'Express', 'LESS', 'Mailchimp', 'BrowserStack'],
   },
 ];
 
