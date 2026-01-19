@@ -38,7 +38,7 @@ export const personalInfo = {
   location: 'New Delhi, India',
   bio: [
     `I'm a passionate frontend engineer with over 12 years of experience building scalable, accessible, and performance-driven web applications. My work sits at the intersection of design and engineering, meeting product decisions, technical constraints and user needs.`,
-    `Over the years, I've led and contributed to products used globally focusing not just on how interfaces are built, but how they interact with users. I care deeply about scalability, usability and accessibility across multiple teams and evolving requirements.`,
+    `Over the years, I've led and contributed to products used globally focusing not just on how interfaces are built, but how they interact with users. I care deeply about scalability, usability and accessibility across multiple products and their evolving requirements.`,
     `My approach to work is rooted in ownership and collaboration. I enjoy working closely with designers, product managers, and engineers to translate abstract ideas into well-crafted and concrete experiences.`,
     `Outside of work, I explore <a href="https://www.instagram.com/ashbee.arts/" target="_blank" rel="noopener noreferrer">sketching and illustration</a> and experiment with <a href="https://codepen.io/AshBardhan" target="_blank" rel="noopener noreferrer">creative CSS animations</a>. These explorations influence how I think with clarity in building digital interfaces.`,
     `In a nutshell, my work lives somewhere between art and programming for building thoughtful user experiences.`,

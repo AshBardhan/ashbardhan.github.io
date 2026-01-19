@@ -12,8 +12,7 @@
 		"format": "prettier --write \"src/**/*.{astro,ts,js,css}\""
 	},
 	"dependencies": {
-		"astro": "^4.16.17",
-		"gsap": "^3.12.5"
+		"astro": "^4.16.17"
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.4",

@@ -18,16 +18,10 @@ export default defineConfig({
       cssMinify: true,
       minify: 'terser',
       rollupOptions: {
-        output: {
-          manualChunks: {
-            'gsap': ['gsap'],
-          },
-        },
+        output: {},
       },
     },
-    ssr: {
-      noExternal: ['gsap'],
-    },
+    ssr: {},
   },
   
   // Output mode - static for GitHub Pages

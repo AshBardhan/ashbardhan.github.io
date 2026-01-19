@@ -10,7 +10,6 @@ A modern, high-performance portfolio website built with Astro, showcasing fronte
 - Responsive design optimized for all devices
 - SEO optimized with meta tags, Open Graph, JSON-LD, and sitemap
 - Fully accessible (a11y) with keyboard navigation and ARIA labels
-- GSAP-ready animation utilities
 - Modal-based UI for project and career details
 - Contact form with validation
 
@@ -183,7 +182,6 @@ Before deploying, verify:
 ### Recommended Optimizations
 
 - Convert images to WebP or AVIF format
-- Add GSAP for advanced animations
 - Implement Service Worker for PWA capabilities
 - Add preload hints for critical resources
 - Configure CDN for asset delivery
@@ -217,6 +215,19 @@ Before deploying, verify:
 - Firefox (latest 2 versions)
 - Safari (latest 2 versions)
 - Mobile browsers (iOS Safari, Chrome Mobile)
+
+## Future Enhancements
+
+- **Advanced Animations**: Integrate GSAP for smooth scroll-based animations, parallax effects, and micro-interactions
+  - Hero section fade-in and slide animations
+  - Scroll-triggered section reveals with ScrollTrigger
+  - Project card hover effects and stagger animations
+  - Smooth page transitions
+- **Blog Section**: Add a blog powered by Astro Content Collections for sharing technical articles and insights
+- **Theme Switcher**: Implement dark/light mode toggle with system preference detection
+- **Analytics**: Add privacy-friendly analytics (e.g., Plausible or Fathom)
+- **RSS Feed**: Auto-generate RSS feed for blog content
+- **Search Functionality**: Client-side search for projects and blog posts
 
 ## License
 

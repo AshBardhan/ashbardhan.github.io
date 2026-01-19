@@ -164,7 +164,7 @@ const { id, size = 'medium', ariaLabelledBy } = Astro.props;
 
     private init(): void {
       // Set up event listeners
-      if (this.closeBtn && this.options.closeOnBackdrop) {
+      if (this.closeBtn) {
         this.closeBtn.addEventListener('click', () => this.close());
       }
 
