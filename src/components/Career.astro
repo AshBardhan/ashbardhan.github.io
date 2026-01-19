@@ -1,0 +1,246 @@
+---
+import { employment } from '@/data/portfolio';
+import Modal from './Modal.astro';
+---
+
+<section id="career" class="career-section">
+  <div class="container">
+    <h2 class="section-title reveal">Experiences</h2>
+    <div class="timeline">
+      {
+        employment.map((job, index) => (
+          <div class="timeline-item reveal" data-job-id={job.id}>
+            <div class="timeline-content">
+              <div class="timeline-marker" />
+              <div class="job-header">
+                <h3 class="job-title">{job.position}</h3>
+                <span class="job-duration">{job.duration}</span>
+              </div>
+              <div class="job-company">{job.company}</div>
+              <p class="job-description">{job.description}</p>
+              <button class="view-details-btn" data-job-id={job.id} aria-label={`View details for ${job.position} at ${job.company}`}>
+                View Contributions
+              </button>
+              <div class="job-tech-stack">
+                {job.techStack.map((tech) => (
+                  <span class="tech-tag">{tech}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+<Modal id="career-modal" size="large" ariaLabelledBy="modal-title" />
+
+<style>
+  .career-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: var(--space-12) 0;
+    background-color: var(--color-bg-primary);
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--space-10);
+    font-size: var(--font-size-4xl);
+    color: var(--color-text-primary);
+  }
+
+  .timeline {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: var(--space-10);
+    padding-left: var(--space-6);
+  }
+
+  .timeline-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: var(--space-6);
+    bottom: calc(var(--space-12) * -1);
+    width: 2px;
+    background: linear-gradient(to bottom, var(--color-primary), var(--color-primary-dark));
+  }
+
+  .timeline-marker {
+    position: absolute;
+    left: calc(var(--space-6) * -1);
+    top: var(--space-6);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    border: 3px solid var(--color-bg-primary);
+    box-shadow: 0 0 0 3px var(--color-primary);
+    transform: translateX(-50%);
+    transition: transform var(--transition-fast);
+  }
+
+  .timeline-content:hover .timeline-marker {
+    transform: translateX(-50%) scale(1.2);
+  }
+
+  .timeline-content {
+    position: relative;
+    background-color: var(--color-bg-secondary);
+    padding: var(--space-6);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    transition:
+      transform var(--transition-fast),
+      box-shadow var(--transition-fast);
+  }
+
+  .timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-4);
+    margin-bottom: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .job-title {
+    font-size: var(--font-size-2xl);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .job-duration {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-semibold);
+    background-color: var(--color-primary-dark);
+    color: white;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--border-radius-full);
+  }
+
+  .job-company {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-3);
+  }
+
+  .job-description {
+    margin-bottom: var(--space-4);
+  }
+
+  .view-details-btn {
+    background-color: var(--color-accent);
+    color: var(--color-bg-dark);
+    border: none;
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition:
+      transform var(--transition-fast),
+      box-shadow var(--transition-fast);
+    margin-bottom: var(--space-4);
+  }
+
+  .view-details-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .job-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .tech-tag {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    background-color: var(--color-bg-primary);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 768px) {
+    .timeline-item {
+      padding-left: 0;
+    }
+
+    .timeline-item:not(:last-child)::before,
+    .timeline-marker {
+      display: none;
+    }
+
+    .job-header {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script>
+  import { employment } from '@/data/portfolio';
+
+  // Wait for DOM and Modal class to be ready
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize modal instance
+    const careerModal = new (window as any).Modal('career-modal', {
+      size: 'medium',
+      ariaLabelledBy: 'modal-title',
+    });
+
+    // Handle view details buttons
+    const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
+
+    viewDetailsBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const jobId = btn.getAttribute('data-job-id');
+        const job = employment.find((j) => j.id === jobId);
+
+        if (job) {
+          const content = `
+            <h2 id="modal-title" style="margin-bottom: var(--space-4); color: var(--color-text-primary);">
+              ${job.position} at ${job.company}
+            </h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+              ${job.duration}
+            </p>
+            <h3 style="margin-bottom: var(--space-3); color: var(--color-text-primary);">Key Contributions:</h3>
+            <ul style="list-style: disc; padding-left: var(--space-6); margin-bottom: var(--space-6);">
+              ${job.contributions.map((c) => `<li style="margin-bottom: var(--space-2);">${c}</li>`).join('')}
+            </ul>
+            <h3 style="margin-bottom: var(--space-3); color: var(--color-text-primary);">Technologies Used:</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: var(--space-2);">
+              ${job.techStack
+                .map(
+                  (tech) => `
+                <span style="font-size: var(--font-size-sm); background-color: var(--color-bg-secondary); padding: var(--space-2) var(--space-4); border-radius: var(--border-radius-md); border: 1px solid var(--color-border);">
+                  ${tech}
+                </span>
+              `
+                )
+                .join('')}
+            </div>
+          `;
+
+          careerModal.setContent(content);
+          careerModal.open();
+        }
+      });
+    });
+  });
+</script>

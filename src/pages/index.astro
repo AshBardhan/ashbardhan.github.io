@@ -1,0 +1,92 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Hero from '@/components/Hero.astro';
+import About from '@/components/About.astro';
+import Career from '@/components/Career.astro';
+import Projects from '@/components/Projects.astro';
+import Contact from '@/components/Contact.astro';
+---
+
+<BaseLayout>
+  <Header />
+  <main id="main-content">
+    <Hero />
+    <About />
+    <Career />
+    <Projects />
+    <Contact />
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      &copy; {new Date().getFullYear()} Ashish Bardhan. All rights reserved.
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  .site-footer {
+    background-color: var(--color-bg-header);
+    color: var(--color-text-white);
+    padding: var(--space-6) 0;
+    text-align: center;
+    font-size: var(--font-size-sm);
+  }
+</style>
+
+<script>
+  // Scroll reveal animation using IntersectionObserver
+  function initScrollReveal() {
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    reveals.forEach((reveal) => {
+      observer.observe(reveal);
+    });
+  }
+
+  // Initialize on DOM load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollReveal);
+  } else {
+    initScrollReveal();
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (this: HTMLAnchorElement, e: Event) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId !== '#') {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }
+      }
+    });
+  });
+
+  // Console easter egg for recruiters
+  console.log('%c👋 Hey there, curious developer!', 'color: #e6e663; font-size: 20px; font-weight: bold;');
+  console.log("%cThanks for checking out the console! If you're a recruiter or potential client, let's connect!", 'color: #A5ABDF; font-size: 14px;');
+  console.log('%c💼 LinkedIn: https://www.linkedin.com/in/ashbardhan/', 'color: #4a4a4a; font-size: 12px;');
+  console.log('%c🐙 GitHub: https://github.com/AshBardhan', 'color: #4a4a4a; font-size: 12px;');
+</script>

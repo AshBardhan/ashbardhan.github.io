@@ -1,0 +1,257 @@
+---
+export interface Props {
+  id: string;
+  size?: 'small' | 'medium' | 'large';
+  ariaLabelledBy?: string;
+}
+
+const { id, size = 'medium', ariaLabelledBy } = Astro.props;
+---
+
+<div id={id} class={`modal modal-${size}`} role="dialog" aria-modal="true" aria-labelledby={ariaLabelledBy}>
+  <div class="modal-backdrop"></div>
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Close modal">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <div class="modal-body">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--z-index-modal);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+  }
+
+  .modal.active {
+    display: flex;
+  }
+
+  .modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-content {
+    position: relative;
+    background-color: var(--color-bg-primary);
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-xl);
+    animation: modalSlideIn 0.3s ease-out;
+  }
+
+  /* Size variants */
+  .modal-small .modal-content {
+    max-width: 400px;
+    padding: var(--space-6);
+  }
+
+  .modal-medium .modal-content {
+    max-width: 800px;
+    padding: var(--space-8);
+  }
+
+  .modal-large .modal-content {
+    max-width: 1200px;
+    padding: var(--space-8);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+    color: var(--color-text-secondary);
+    transition: color var(--transition-fast);
+    z-index: 1;
+  }
+
+  .modal-close:hover {
+    color: var(--color-text-primary);
+  }
+
+  .modal-body {
+    position: relative;
+  }
+
+  @keyframes modalSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .modal-small .modal-content,
+    .modal-medium .modal-content {
+      padding: var(--space-6) var(--space-4);
+    }
+
+    .modal-large .modal-content {
+      padding: var(--space-6) var(--space-4);
+      max-width: 95vw;
+    }
+  }
+</style>
+
+<script>
+  interface ModalOptions {
+    size?: 'small' | 'medium' | 'large';
+    closeOnBackdrop?: boolean;
+    closeOnEscape?: boolean;
+    ariaLabelledBy?: string;
+  }
+
+  class Modal {
+    private element: HTMLElement;
+    private backdrop: HTMLElement;
+    private closeBtn: HTMLElement;
+    private body: HTMLElement;
+    private options: Required<ModalOptions>;
+    private isOpen: boolean = false;
+
+    constructor(modalId: string, options: ModalOptions = {}) {
+      // Set default options
+      this.options = {
+        size: 'medium',
+        closeOnBackdrop: true,
+        closeOnEscape: true,
+        ariaLabelledBy: '',
+        ...options,
+      };
+
+      // Find modal elements
+      this.element = document.getElementById(modalId) as HTMLElement;
+      if (!this.element) {
+        throw new Error(`Modal with id "${modalId}" not found`);
+      }
+
+      this.backdrop = this.element.querySelector('.modal-backdrop') as HTMLElement;
+      this.closeBtn = this.element.querySelector('.modal-close') as HTMLElement;
+      this.body = this.element.querySelector('.modal-body') as HTMLElement;
+
+      this.init();
+    }
+
+    private init(): void {
+      // Set up event listeners
+      if (this.closeBtn) {
+        this.closeBtn.addEventListener('click', () => this.close());
+      }
+
+      if (this.backdrop && this.options.closeOnBackdrop) {
+        this.backdrop.addEventListener('click', () => this.close());
+      }
+
+      if (this.options.closeOnEscape) {
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && this.isOpen) {
+            this.close();
+          }
+        });
+      }
+
+      // Set size class
+      this.element.classList.add(`modal-${this.options.size}`);
+
+      // Set aria attributes
+      if (this.options.ariaLabelledBy) {
+        this.element.setAttribute('aria-labelledby', this.options.ariaLabelledBy);
+      }
+    }
+
+    public open(): void {
+      if (this.isOpen) return;
+
+      this.element.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      this.isOpen = true;
+
+      // Dispatch custom event
+      this.element.dispatchEvent(
+        new CustomEvent('modalOpen', {
+          detail: { modal: this },
+        })
+      );
+    }
+
+    public close(): void {
+      if (!this.isOpen) return;
+
+      this.element.classList.remove('active');
+      document.body.style.overflow = '';
+      this.isOpen = false;
+
+      // Dispatch custom event
+      this.element.dispatchEvent(
+        new CustomEvent('modalClose', {
+          detail: { modal: this },
+        })
+      );
+    }
+
+    public toggle(): void {
+      if (this.isOpen) {
+        this.close();
+      } else {
+        this.open();
+      }
+    }
+
+    public setContent(html: string): void {
+      if (this.body) {
+        this.body.innerHTML = html;
+      }
+    }
+
+    public getContent(): string {
+      return this.body?.innerHTML || '';
+    }
+
+    public isModalOpen(): boolean {
+      return this.isOpen;
+    }
+
+    public destroy(): void {
+      this.close();
+      this.element.remove();
+    }
+
+    // Static method to create and return modal instance
+    static create(modalId: string, options: ModalOptions = {}): Modal {
+      return new Modal(modalId, options);
+    }
+  }
+
+  // Make Modal class available globally for other components
+  (window as any).Modal = Modal;
+</script>

@@ -1,0 +1,222 @@
+---
+import { personalInfo } from '@/data/portfolio';
+
+const navLinks = [
+  { href: '#about', label: 'About' },
+  { href: '#career', label: 'Career' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<header class="site-header">
+  <div class="container header-container">
+    <a href="#hero" class="header-logo" aria-label="Go to homepage">
+      <img src={personalInfo.headerImage} alt={personalInfo.name} width="40" height="40" />
+    </a>
+    <nav class="header-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a href={link.href} class="nav-link">
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--color-bg-header);
+    box-shadow: var(--shadow-md);
+    z-index: var(--z-index-fixed);
+    transition:
+      transform var(--transition-base),
+      background-color var(--transition-base);
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+    gap: var(--space-6);
+  }
+
+  .header-logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    transition: opacity var(--transition-fast);
+  }
+
+  .header-logo:hover {
+    opacity: 0.8;
+  }
+
+  .header-logo img {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--border-radius-full);
+    object-fit: cover;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    color: var(--color-accent);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--border-radius-md);
+    transition:
+      color var(--transition-fast),
+      background-color var(--transition-fast);
+    position: relative;
+  }
+
+  .nav-link:hover,
+  .nav-link:focus-visible {
+    color: var(--color-accent-hover);
+  }
+
+  .nav-link.active {
+    color: var(--color-accent-hover);
+  }
+
+  /* Mobile Menu Toggle */
+  .mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+  }
+
+  .hamburger-line {
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-accent);
+    transition:
+      transform var(--transition-base),
+      opacity var(--transition-base);
+  }
+
+  .mobile-menu-toggle[aria-expanded='true'] .hamburger-line:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .mobile-menu-toggle[aria-expanded='true'] .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-toggle[aria-expanded='true'] .hamburger-line:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .header-nav {
+      position: absolute;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      background-color: var(--color-bg-header);
+      box-shadow: var(--shadow-lg);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--transition-base);
+    }
+
+    .header-nav.active {
+      max-height: 300px;
+    }
+
+    .nav-list {
+      flex-direction: column;
+      align-items: stretch;
+      padding: var(--space-4);
+      gap: var(--space-2);
+    }
+
+    .nav-link {
+      display: block;
+      padding: var(--space-3);
+      text-align: center;
+    }
+
+    .mobile-menu-toggle {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const headerNav = document.querySelector('.header-nav');
+
+  mobileMenuToggle?.addEventListener('click', () => {
+    const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+    mobileMenuToggle.setAttribute('aria-expanded', String(!isExpanded));
+    headerNav?.classList.toggle('active');
+  });
+
+  // Close mobile menu when clicking nav links
+  const navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+      headerNav?.classList.remove('active');
+    });
+  });
+
+  // Smooth scroll and active link highlighting
+  const sections = document.querySelectorAll('section[id]');
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -80% 0px',
+    threshold: 0,
+  };
+
+  const observerCallback = (entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach((link) => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(observerCallback, observerOptions);
+  sections.forEach((section) => observer.observe(section));
+</script>
